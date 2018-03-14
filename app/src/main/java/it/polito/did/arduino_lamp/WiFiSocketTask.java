@@ -8,9 +8,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -25,7 +28,7 @@ public class WiFiSocketTask extends AsyncTask<Void, String, Void> {
     // Tag for logging
     private final String TAG = getClass().getSimpleName();
 
-    // ciao
+    // int prova = 0;
 
     // Location of the remote host
     String address;
@@ -38,18 +41,15 @@ public class WiFiSocketTask extends AsyncTask<Void, String, Void> {
 
     Socket socket;
     private BufferedReader inStream;
-    OutputStream outStream = new OutputStream() {
-        @Override
-        public void write(int i) throws IOException {
+    //OutputStream outStream;
+    PrintWriter printWriter;
 
-        }
-    };
 
     // Signal to disconnect from the socket
     private boolean disconnectSignal = false;
 
     // Socket timeout - close if no messages received (ms)
-    private int timeout = 5000;
+    private int timeout = 10000;
 
     // Constructor
     public WiFiSocketTask(String address, int port) {
@@ -95,12 +95,14 @@ public class WiFiSocketTask extends AsyncTask<Void, String, Void> {
         try {
 
             // Open the socket and connect to it
-            socket = new Socket();
-            socket.connect(new InetSocketAddress(address, port), timeout);
+            socket = new Socket(address, port);
+            //socket.connect(new InetSocketAddress(address, port), timeout);
 
             // Get the input and output streams
             inStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outStream = socket.getOutputStream();
+            //outStream = socket.getOutputStream();
+            printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            //publishProgress("PRONTI");
 
             // Confirm that the socket opened
             if(socket.isConnected()) {
@@ -142,7 +144,7 @@ public class WiFiSocketTask extends AsyncTask<Void, String, Void> {
         try {
             if (socket != null) socket.close();
             if (inStream != null) inStream.close();
-            if (outStream != null) outStream.close();
+            if (printWriter != null) printWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,8 +168,12 @@ public class WiFiSocketTask extends AsyncTask<Void, String, Void> {
             connected();
         } else if(msg.equals(DISCONNECTED_MSG))
             disconnected();
-        else if(msg.equals(PING_MSG))
-        {}
+        else if(msg.equals(PING_MSG)) {
+        }
+        /*else if (msg.equals("PRONTI")) {
+            prova=1;
+            Log.d(TAG, "PRONTI 1");
+        }*/
 
         // Invoke the gotMessage callback for all other messages
         else
@@ -181,8 +187,8 @@ public class WiFiSocketTask extends AsyncTask<Void, String, Void> {
      */
     public void sendMessage(String data) {
         try {
-            outStream.write(data.getBytes());
-            outStream.write('\n');
+            printWriter.println(data);
+            // printWriter.write('\n');
         } catch (Exception e) {
             e.printStackTrace();
         }

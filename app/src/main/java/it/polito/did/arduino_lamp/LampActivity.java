@@ -31,9 +31,9 @@ public class LampActivity extends AppCompatActivity {
         Lamp lamp = LampManager.getInstance().getLamp(url);
 
         // WI-FI
-        WiFiSocketTask wiFiSocketTask = new WiFiSocketTask("192.168.1.83", LOCAL_PORT);
-        final WiFi wifi = new WiFi(wiFiSocketTask, "192.168.1.83");
-        wifi.connect(url, LOCAL_PORT);
+        WiFiSocketTask wiFiSocketTask = new WiFiSocketTask(url, LOCAL_PORT);
+        final WiFi wifi = new WiFi(wiFiSocketTask, url);
+        wifi.connect(url , LOCAL_PORT);
 
         wifi.send("Hello!");
 

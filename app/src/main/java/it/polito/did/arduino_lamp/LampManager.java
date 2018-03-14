@@ -81,7 +81,7 @@ public class LampManager {
 
                         // ascolta e ricevi pacchetti per non più di 5 secondi
                         long startTime=System.currentTimeMillis();
-                        int delta=5000;
+                        int delta=10000;
                         while(delta>0) {
                             s.setSoTimeout(delta);
                             s.receive(p);

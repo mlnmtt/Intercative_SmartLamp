@@ -48,7 +48,7 @@ public class WiFi {
             try {
                 // Start the asyncronous task thread
                 setStatus("Attempting to connect...");
-                wifiTask = new WiFiSocketTask(host, port);
+                //wifiTask = new WiFiSocketTask(host, port);
                 wifiTask.execute();
 
             } catch (Exception e) {

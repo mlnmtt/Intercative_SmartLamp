@@ -80,8 +80,8 @@ public class LampView extends View {
         // canvas.drawLine(w/2+l/3, h/2-l/4, w/2+l/3, h/2, paint1);
 
         // disegna la nostra lampada?
-        canvas.drawLine(w/2-l/3, h/2-l/4, w/2, h/2+l/2, paint1);
-        canvas.drawLine(w/2+l/3, h/2-l/4, w/2, h/2+l/2, paint1);
+        canvas.drawLine(w/2-l/3, h/2-l/4, w/2, h/2-l/2, paint1);
+        canvas.drawLine(w/2+l/3, h/2-l/4, w/2, h/2-l/2, paint1);
         canvas.drawCircle(w/2+l/3, h/2, 5, paint1);
         canvas.drawCircle(w/2-l/3, h/2, 5, paint1);
         canvas.drawLine(w/2+l/3, h/2, (float)(w/2+l/3+l/3*Math.cos(rad)), (float)(h/2+l/3*Math.sin(rad)), paint1);
