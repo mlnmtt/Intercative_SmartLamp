@@ -1,3 +1,3 @@
 # Intercative_SmartLamp
 IoT design. Interactive Smart Lamp that includes prototype of the lamp, with arduino Wi-Fi integrated, and Android app.
-You need Arduino and FastLed.
+You need to install arduino_lampTCPok_SAVE.ino in your NodeMCU and you need FastLed strips. Arduino and Android must be on the same LAN.
