@@ -20,39 +20,20 @@ public class Lamp {
     private int rgb;
     private boolean io;
     private int intensity;
-    private Bitmap picture;
-
-    private Paint paint1;
-    private float angle;
-    private Path path1;
+    private String picture;
+    private int angleL;
+    private int angleR;
 
     // costruttore
     public Lamp(Context ctx, String URL) {
         this.URL=URL;
-        // x simulare pacchetti di arduino che portano le info sulla lampada
-        switch (URL) {
-            case "url1":
-                picture = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.lamp1);
-                name = "Cucina";
-                break;
-            case "url2":
-                picture = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.lamp2);
-                name = "Studio";
-                break;
-            case "url3":
-                picture = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.lamp3);
-                name = "Bagno";
-                break;
-        }
     }
 
     public Lamp getLamp() { return Lamp.this; }
 
     // metodi
     // ogni set e get invia e riceve pacchetti TCP a e da Arduino
-    public String getUrl(){
-        return URL;
-    }
+    public String getUrl(){ return URL; }
     public void setColor(int rgb){
         this.rgb = rgb;
     }
@@ -80,7 +61,12 @@ public class Lamp {
     public int getIntensity(){
         return intensity;
     }
-    public Bitmap getPicture(){
+    public void setPicture(String picture) { this.picture = picture; }
+    public String getPicture(){
         return picture;
     }
+    public int getAngleL() { return angleL; }
+    public void setAngleL(int angleL) { this.angleL = angleL; }
+    public int getAngleR() { return angleR; }
+    public void setAngleR(int angleR) { this.angleR = angleR; }
 }
