@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context="it.polito.did.arduino_lamp.LampActivity"
     android:background="@android:color/background_dark">
-
+    
     <ImageView
         android:id="@+id/lamp_img"
         android:layout_width="200dp"

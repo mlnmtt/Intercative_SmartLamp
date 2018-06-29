@@ -8,7 +8,6 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -43,11 +42,6 @@ public class WiFi {
 
     // Socket timeout - close if no messages received (ms)
     private int timeout = 10000;
-
-    /*
-    // AsyncTask object that manages the connection in a separate thread
-    private WiFiSocketTask wifiTask = new WiFiSocketTask();
-    */
 
     // Costruttore
     public WiFi(String url, OnMessageReceived listener) {
@@ -132,7 +126,6 @@ public class WiFi {
 
                 // contatta arduino
                 bufferOut.println(data); // come stai? oppure aggiornati
-
                 // ritorna al caso default
                 if (!data.equals("?"))
                     setData("?");
