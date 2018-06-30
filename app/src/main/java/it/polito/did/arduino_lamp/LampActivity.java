@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Vibrator;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +34,8 @@ public class LampActivity extends AppCompatActivity {
     private RadioButton warm;
     private RadioGroup color;
     private ImageView lampImg;
+
+    private ActionBar actionBar;
 
     // VARIABILI CONNESIONE TCP
     private WiFiSocketTask wiFiSocketTask;
@@ -68,6 +72,8 @@ public class LampActivity extends AppCompatActivity {
 
         // COLLEGO LE VARIABILI DELL'OGGETTO A QUELLE DELLA GUI
         // NOME LAMPADA
+
+        setActionBar(actionBar);
         tv=findViewById(R.id.lamp_name);
         tv.setText(lamp.getName());
 
@@ -236,6 +242,8 @@ public class LampActivity extends AppCompatActivity {
         sbL.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vb.vibrate(100);
                 lv.setAngleL(progress);
                 lamp.setAngleL(progress);
                 Log.d("seekBar", ""+progress);
@@ -260,6 +268,8 @@ public class LampActivity extends AppCompatActivity {
         sbR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vb.vibrate(100);
                 lv.setAngleR(progress);
                 lamp.setAngleR(progress);
                 Log.d("seekBar", ""+progress);
@@ -301,5 +311,12 @@ public class LampActivity extends AppCompatActivity {
             editor.commit();
         }
         super.onStop();
+    }
+
+    public void setActionBar(ActionBar actionBar) {
+        this.actionBar = actionBar;
+        actionBar.setTitle((CharSequence) lamp.getName());
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.show();
     }
 }
