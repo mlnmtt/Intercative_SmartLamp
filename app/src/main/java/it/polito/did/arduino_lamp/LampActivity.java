@@ -1,5 +1,6 @@
 package it.polito.did.arduino_lamp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -40,6 +41,7 @@ public class LampActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
     private Lamp lamp;
 
     @Override
@@ -132,9 +134,42 @@ public class LampActivity extends AppCompatActivity {
                 handler.post(runnable);
             }
         };
-        wifi = new WiFi(url, listener);
+        wifi = new WiFi(url, listener, this);
         wiFiSocketTask = new WiFiSocketTask();
         wiFiSocketTask.execute(wifi);
+
+        // GRAY OUT
+        if (lamp.isOn() == false) {
+            lv.setAlpha(.5f);
+            sbL.setAlpha(.5f);
+            sbL.setEnabled(false);
+            sbR.setAlpha(.5f);
+            sbR.setEnabled(false);
+            sbLight.setAlpha(.5f);
+            sbLight.setEnabled(false);
+            cold.setAlpha(.5f);
+            cold.setClickable(false);
+            soft.setAlpha(.5f);
+            soft.setClickable(false);
+            warm.setAlpha(.5f);
+            warm.setClickable(false);
+            color.setAlpha(.5f);
+        } else {
+            lv.setAlpha(1);
+            sbL.setAlpha(1);
+            sbL.setEnabled(true);
+            sbR.setAlpha(1);
+            sbR.setEnabled(true);
+            sbLight.setAlpha(1);
+            sbLight.setEnabled(true);
+            cold.setAlpha(1);
+            cold.setClickable(true);
+            soft.setAlpha(1);
+            soft.setClickable(true);
+            warm.setAlpha(1);
+            warm.setClickable(true);
+            color.setAlpha(1);
+        }
 
         // ACCENDI E SPEGNI
         io.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {

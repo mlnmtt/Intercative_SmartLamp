@@ -4,13 +4,13 @@
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark" >
+    android:background="#232F34" >
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="it.polito.did.arduino_lamp.MainActivity"
-        android:background="@android:color/background_dark">
+        android:background="#232F34">
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"

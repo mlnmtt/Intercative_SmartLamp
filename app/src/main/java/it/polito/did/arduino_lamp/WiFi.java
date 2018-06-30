@@ -4,6 +4,8 @@ package it.polito.did.arduino_lamp;
  * Created by mlnmtt on 23/02/18.
  */
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -43,10 +45,13 @@ public class WiFi {
     // Socket timeout - close if no messages received (ms)
     private int timeout = 10000;
 
+    private LampActivity lampActivity;
+
     // Costruttore
-    public WiFi(String url, OnMessageReceived listener) {
+    public WiFi(String url, OnMessageReceived listener, LampActivity lampActivity) {
         this.url = url;
         lamp = LampManager.getInstance().getLamp(url);
+        this.lampActivity = lampActivity;
         connection = true;
         messageListener = listener; // per agire dopo aver interpretato i messaggi
     }
@@ -140,6 +145,7 @@ public class WiFi {
                 sleep(1000);
             }
         } catch (Exception e) {
+            lampActivity.finish();
             e.printStackTrace();
             Log.e(TAG, "Error in socket thread!");
         }

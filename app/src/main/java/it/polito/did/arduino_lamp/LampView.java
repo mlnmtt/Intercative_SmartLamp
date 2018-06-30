@@ -31,7 +31,7 @@ public class LampView extends View {
         super(ctx, attrs, theme);
 
         paint1 = new Paint();
-        paint1.setColor(0xffffa500);
+        paint1.setColor(0xff44C600);
         paint1.setStrokeWidth(10.0f);
         paint1.setStyle(Paint.Style.STROKE);
         paint1.setPathEffect(new CornerPathEffect(15));

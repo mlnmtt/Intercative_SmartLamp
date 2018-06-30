@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="it.polito.did.arduino_lamp.LampActivity"
-    android:background="@android:color/background_dark">
+    android:background="#344955"
+    android:layout_marginBottom="8dp" >
     
     <ImageView
         android:id="@+id/lamp_img"
@@ -41,6 +42,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lamp_img"
         app:layout_constraintTop_toTopOf="@+id/lamp_img" />
-
 
 </android.support.constraint.ConstraintLayout>
