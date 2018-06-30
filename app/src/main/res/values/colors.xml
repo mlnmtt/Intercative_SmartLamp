@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#379F00</color>
-    <color name="colorPrimary">#44C600</color>
-    <color name="colorAccent">#7AC600</color>
+    <color name="colorPrimaryDark">#3c9f00</color>
+    <color name="colorPrimary">#46B900</color>
+    <color name="colorAccent">#4BC600</color>
+    <color name="primary_device_default_dark">#46b900</color>
+    <color name="primary_dark_device_default_dark">#46b900</color>
+    <color name="accent_device_default_dark">#46b900</color>
 </resources>

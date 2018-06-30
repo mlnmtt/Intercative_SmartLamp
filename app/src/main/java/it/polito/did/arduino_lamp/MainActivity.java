@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 }, 1000);
             }
         });
-        swipeLayout.setColorScheme(android.R.color.holo_orange_dark);
+        swipeLayout.setColorScheme(android.R.color.holo_green_dark);
 
         r = new Runnable() {
             @Override
