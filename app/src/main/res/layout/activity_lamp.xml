@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="it.polito.did.arduino_lamp.LampActivity"
-    android:background="#232F34"
-    >
+    android:background="#232F34" >
 
     <TextView
         android:id="@+id/lamp_name"
@@ -41,6 +40,20 @@
         app:layout_constraintEnd_toStartOf="@+id/radioGroup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:text="I/O"
+        android:textColor="@android:color/background_light"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/switch1"
+        app:layout_constraintEnd_toEndOf="@+id/switch1"
+        app:layout_constraintStart_toStartOf="@+id/switch1" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -148,7 +161,7 @@
         android:fontFamily="sans-serif"
         android:textColor="@android:color/background_light"
         android:textSize="15sp"
-        android:src="@drawable/brightnessLOW"
+        android:src="@drawable/brightness_low"
         android:rotation="180"
         app:layout_constraintBottom_toBottomOf="@+id/seekBar2"
         app:layout_constraintEnd_toStartOf="@+id/seekBar2"
@@ -156,6 +169,22 @@
         app:layout_constraintTop_toTopOf="@+id/seekBar2"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/seekBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seekBar2"
+        app:layout_constraintTop_toTopOf="@+id/seekBar2"
+        app:srcCompat="@drawable/brightness_high" />
 
     <it.polito.did.arduino_lamp.LampView
         android:id="@+id/lv"
@@ -211,36 +240,6 @@
         app:layout_constraintEnd_toEndOf="@+id/lv"
         app:layout_constraintStart_toEndOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/lv"
-        tools:targetApi="lollipop" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="sans-serif"
-        android:text="I/O"
-        android:textColor="@android:color/background_light"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/switch1"
-        app:layout_constraintEnd_toEndOf="@+id/switch1"
-        app:layout_constraintStart_toStartOf="@+id/switch1" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBar2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/seekBar2"
-        app:layout_constraintTop_toTopOf="@+id/seekBar2"
-        app:srcCompat="@drawable/brightnessHIGH" />
+        tools:targetApi="o" />
 
 </android.support.constraint.ConstraintLayout>

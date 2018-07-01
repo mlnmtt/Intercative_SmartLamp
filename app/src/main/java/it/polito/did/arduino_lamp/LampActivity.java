@@ -26,7 +26,7 @@ public class LampActivity extends AppCompatActivity {
     private LampView lv;
     private TextView tv;
     private SeekBar sbL;
-    private SeekBar sbR;
+    private FlippedSeekBar sbR;
     private SeekBar sbLight;
     private Switch io;
     private RadioButton cold;
@@ -73,7 +73,7 @@ public class LampActivity extends AppCompatActivity {
         // COLLEGO LE VARIABILI DELL'OGGETTO A QUELLE DELLA GUI
         // NOME LAMPADA
 
-        setActionBar(actionBar);
+        setActionBar(actionBar); // metedo esterno per settare l'appBar
         tv=findViewById(R.id.lamp_name);
         tv.setText(lamp.getName());
 
@@ -116,7 +116,6 @@ public class LampActivity extends AppCompatActivity {
         sbL.setProgress(lamp.getAngleL());
         sbL.setMax(130);
         sbR=findViewById(R.id.seekBar3);
-        //sbR.setRotation(180);
         sbR.setProgress(lamp.getAngleR());
         sbR.setMax(130);
 
@@ -313,6 +312,7 @@ public class LampActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    // imposta appBar
     public void setActionBar(ActionBar actionBar) {
         this.actionBar = actionBar;
         actionBar.setTitle((CharSequence) lamp.getName());
