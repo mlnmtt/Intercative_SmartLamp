@@ -72,14 +72,13 @@ public class LampActivity extends AppCompatActivity {
 
         // COLLEGO LE VARIABILI DELL'OGGETTO A QUELLE DELLA GUI
         // NOME LAMPADA
-
-        setActionBar(actionBar); // metedo esterno per settare l'appBar
         tv=findViewById(R.id.lamp_name);
         tv.setText(lamp.getName());
+        // setActionBar(actionBar); // metedo esterno per settare l'appBar
 
         // TASTO ON-OFF
         io=findViewById(R.id.switch1);
-        io.setChecked(lamp.isOn());
+        //io.setChecked(lamp.isOn());
 
         // TASTI COLORE
         cold=findViewById(R.id.radioButton2);
@@ -114,10 +113,10 @@ public class LampActivity extends AppCompatActivity {
         lv.setAngleR(lamp.getAngleR());
         sbL=findViewById(R.id.seekBar);
         sbL.setProgress(lamp.getAngleL());
-        sbL.setMax(130);
+        sbL.setMax(100);
         sbR=findViewById(R.id.seekBar3);
         sbR.setProgress(lamp.getAngleR());
-        sbR.setMax(130);
+        sbR.setMax(100);
 
         // WI-FI
         listener = new WiFi.OnMessageReceived() {  // listener per aggiornare la GUI da Arduino
@@ -143,38 +142,7 @@ public class LampActivity extends AppCompatActivity {
         wiFiSocketTask = new WiFiSocketTask();
         wiFiSocketTask.execute(wifi);
 
-        // GRAY OUT
-        if (lamp.isOn() == false) {
-            lv.setAlpha(.5f);
-            sbL.setAlpha(.5f);
-            sbL.setEnabled(false);
-            sbR.setAlpha(.5f);
-            sbR.setEnabled(false);
-            sbLight.setAlpha(.5f);
-            sbLight.setEnabled(false);
-            cold.setAlpha(.5f);
-            cold.setClickable(false);
-            soft.setAlpha(.5f);
-            soft.setClickable(false);
-            warm.setAlpha(.5f);
-            warm.setClickable(false);
-            color.setAlpha(.5f);
-        } else {
-            lv.setAlpha(1);
-            sbL.setAlpha(1);
-            sbL.setEnabled(true);
-            sbR.setAlpha(1);
-            sbR.setEnabled(true);
-            sbLight.setAlpha(1);
-            sbLight.setEnabled(true);
-            cold.setAlpha(1);
-            cold.setClickable(true);
-            soft.setAlpha(1);
-            soft.setClickable(true);
-            warm.setAlpha(1);
-            warm.setClickable(true);
-            color.setAlpha(1);
-        }
+        grayOut();
 
         // ACCENDI E SPEGNI
         io.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
@@ -192,6 +160,7 @@ public class LampActivity extends AppCompatActivity {
                     wifi.setData(buff);
                     buff = "";
                 }
+                grayOut();
             }
         });
 
@@ -242,6 +211,7 @@ public class LampActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                assert vb != null;
                 vb.vibrate(100);
                 lv.setAngleL(progress);
                 lamp.setAngleL(progress);
@@ -268,6 +238,7 @@ public class LampActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                assert vb != null;
                 vb.vibrate(100);
                 lv.setAngleR(progress);
                 lamp.setAngleR(progress);
@@ -307,16 +278,52 @@ public class LampActivity extends AppCompatActivity {
             editor.putInt("r",lamp.getAngleR());
             editor.putInt("c",lamp.getColor());
             editor.putBoolean("s",lamp.isOn());
-            editor.commit();
+            editor.apply();
         }
         super.onStop();
     }
 
-    // imposta appBar
+    // GRAY OUT
+    public void grayOut() {
+        if (lamp.isOn()) {
+            lv.setAlpha(1);
+            sbL.setAlpha(1);
+            sbL.setEnabled(true);
+            sbR.setAlpha(1);
+            sbR.setEnabled(true);
+            sbLight.setAlpha(1);
+            sbLight.setEnabled(true);
+            cold.setAlpha(1);
+            cold.setClickable(true);
+            soft.setAlpha(1);
+            soft.setClickable(true);
+            warm.setAlpha(1);
+            warm.setClickable(true);
+            color.setAlpha(1);
+        } else {
+            lv.setAlpha(.5f);
+            sbL.setAlpha(.5f);
+            sbL.setEnabled(false);
+            sbR.setAlpha(.5f);
+            sbR.setEnabled(false);
+            sbLight.setAlpha(.5f);
+            sbLight.setEnabled(false);
+            cold.setAlpha(.5f);
+            cold.setClickable(false);
+            soft.setAlpha(.5f);
+            soft.setClickable(false);
+            warm.setAlpha(.5f);
+            warm.setClickable(false);
+            color.setAlpha(.5f);
+        }
+    }
+
+    /* imposta appBar
     public void setActionBar(ActionBar actionBar) {
         this.actionBar = actionBar;
-        actionBar.setTitle((CharSequence) lamp.getName());
+        actionBar.setTitle(lamp.getName());
         actionBar.setHomeButtonEnabled(true);
         actionBar.show();
     }
+    */
 }

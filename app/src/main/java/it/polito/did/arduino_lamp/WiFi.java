@@ -1,11 +1,5 @@
 package it.polito.did.arduino_lamp;
 
-/**
- * Created by mlnmtt on 23/02/18.
- */
-
-import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -23,8 +17,8 @@ public class WiFi {
     private final String TAG = getClass().getSimpleName();
 
     // Location of the remote host
-    String url;
-    int port=2048;
+    private String url;
+    private int port=2048;
 
     // variabili TCP
     private Socket socket;
@@ -35,7 +29,7 @@ public class WiFi {
     private String command;
     private int value;
     private char[] tmp;
-    private OnMessageReceived messageListener = null;
+    private OnMessageReceived messageListener;
 
     private Lamp lamp;
 

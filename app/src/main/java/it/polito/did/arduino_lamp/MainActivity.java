@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar loader;
     private LinearLayout ll;
     private SwipeRefreshLayout swipeLayout;
-    private Runnable r = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(MainActivity.this, "Searching for lamps", Toast.LENGTH_SHORT).show();
 
-        final LampManager lm= LampManager.getInstance();
+        final LampManager lm = LampManager.getInstance();
 
-        ll = (LinearLayout) findViewById(R.id.ll);
-        loader=(ProgressBar)findViewById(R.id.loading);
+        ll = findViewById(R.id.ll);
+        loader = findViewById(R.id.loading);
 
-        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeLayout = findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -51,32 +50,32 @@ public class MainActivity extends AppCompatActivity {
                 }, 1000);
             }
         });
-        swipeLayout.setColorScheme(android.R.color.holo_green_dark);
+        // swipeLayout.setColorSchemeColors();
 
-        r = new Runnable() {
+        Runnable r = new Runnable() {
             @Override
             public void run() {
                 loader.setVisibility(View.GONE);
                 // Toast.makeText(MainActivity.this, "Searching for lamps", Toast.LENGTH_SHORT).show();
-                for (int i=ll.getChildCount()-1; i>=0; i--) {
-                    View v=ll.getChildAt(i);
-                    if (v==loader) continue;
+                for (int i = ll.getChildCount() - 1; i >= 0; i--) { // per riempire la scroll view del linear layout
+                    View v = ll.getChildAt(i);
+                    if (v == loader) continue;
                     ll.removeViewAt(i);
                 }
-                List<Lamp> lamps=lm.getLamps();
-                for (int i=0; i<lamps.size(); i++) {
+                List<Lamp> lamps = lm.getLamps();
+                for (int i = 0; i < lamps.size(); i++) {
 
                     final String url = lamps.get(i).getUrl();
-                    View v = getLayoutInflater().inflate(R.layout.adapter_lamp, ll,false); // aggiunge view alle liste
+                    View v = getLayoutInflater().inflate(R.layout.adapter_lamp, ll, false); // aggiunge view alle liste
 
-                    TextView tv = (TextView) v.findViewById(R.id.lamp_name);
+                    TextView tv = v.findViewById(R.id.lamp_name);
                     tv.setText(lamps.get(i).getName());
 
-                    ImageView iv = (ImageView) v.findViewById(R.id.lamp_img);
+                    ImageView iv = v.findViewById(R.id.lamp_img);
                     // Loading Image from URL
                     Picasso.with(v.getContext())
                             .load(lamps.get(i).getPicture())
-                            .resize(200,200)
+                            .resize(200, 200)
                             .into(iv);
 
                     // Change Activity
@@ -94,5 +93,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         lm.discover(ll, r);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

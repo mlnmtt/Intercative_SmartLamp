@@ -1,17 +1,6 @@
 package it.polito.did.arduino_lamp;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.util.AttributeSet;
-import android.view.View;
-
-/**
- * Created by mlnmtt on 30/11/17.
- */
 
 public class Lamp {
     // variabili

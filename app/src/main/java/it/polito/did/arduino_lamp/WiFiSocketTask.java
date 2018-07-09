@@ -1,9 +1,5 @@
 package it.polito.did.arduino_lamp;
 
-/**
- * Created by mlnmtt on 08/03/18.
- */
-
 import android.os.AsyncTask;
 
 /**
@@ -15,7 +11,7 @@ import android.os.AsyncTask;
 public class WiFiSocketTask extends AsyncTask<WiFi, Void, Void> {
 
     // Constructor
-    public WiFiSocketTask() {}
+    WiFiSocketTask() {}
 
     /**
      * Main method of AsyncTask, opens a socket and continuously reads from it

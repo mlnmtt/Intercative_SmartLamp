@@ -1,9 +1,5 @@
 package it.polito.did.arduino_lamp;
 
-/**
- * Created by mlnmtt on 20/05/2018.
- */
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
@@ -71,7 +67,7 @@ public class LampView extends View {
         double radL = Math.toRadians(angleL);
         double radR = Math.toRadians(angleR);
 
-        path1 = new Path();
+        // path1 = new Path();
         path1.moveTo(w/2+l/3, h/2);
         path1.cubicTo(w/2+l/3, h/2, w/2, h/100, w/2-l/3, h/2);
         path1.lineTo(w/2+l/3, h/2);
