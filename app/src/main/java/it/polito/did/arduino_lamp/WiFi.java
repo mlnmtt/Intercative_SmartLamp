@@ -131,15 +131,18 @@ public class WiFi {
 
                 // Read a response message from arduino
                 String msg = bufferIn.readLine();
-                if (msg!=null)
+                if (msg!=null) {
+                    // Log.d(TAG, msg);
                     messageListener.messageReceived(gotMessage(msg)); // chiamo gotMessage e poi invoco il listener per aggiornare l'interfaccia dell'activity
 
+                }
                 // Once talked, try to close the streams
                 disconnect();
                 sleep(1000);
             }
         } catch (Exception e) {
             // connection = false;
+            // disconnect;
             lampActivity.finish();
             e.printStackTrace();
             Log.e(TAG, "Error in socket thread!");
