@@ -139,6 +139,7 @@ public class WiFi {
                 sleep(1000);
             }
         } catch (Exception e) {
+            // connection = false;
             lampActivity.finish();
             e.printStackTrace();
             Log.e(TAG, "Error in socket thread!");
